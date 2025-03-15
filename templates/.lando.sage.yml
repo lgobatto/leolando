@@ -6,7 +6,7 @@ services:
 tooling:
   sage-build:
     description: "Build the Sage theme"
-    dir: /app/wp-content/themes/landoleo
+    dir: /app/wp-content/themes/{{PROJECT_NAME}}
     cmd:
       - appserver: composer install
       - node: yarn install
