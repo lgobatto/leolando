@@ -166,10 +166,17 @@ find wp-content -type d -exec chmod 755 {} \;
 find wp-content -type f -exec chmod 644 {} \;
 echo -e "${GREEN}✔ Permissões corrigidas com sucesso!${RESET}"
 
+# Limpar os arquivos de configuração
+rm -rf templates
+
 # Criar um primeiro commit (SEM modificar remote ou branch)
 echo -e "${BLUE}🎯 Finalizando configuração do Git...${RESET}"
 git add .
+git add wp-content/plugins/${PROJECT_NAME} wp-content/themes/${PROJECT_NAME} # Adiciona pastas vazias
 git commit -m "Inicializando projeto: ${PROJECT_NAME} v${PROJECT_VERSION}, Servidor: ${SERVER_TYPE}, PHP: ${PHP_VERSION}"
+
+# Remover o próprio script após a execução
+rm -- "$0"
 
 echo -e "\n${GREEN}✅ Setup concluído com sucesso!${RESET}"
 echo -e "🔗 Seu projeto usará o domínio: ${YELLOW}${PROJECT_DOMAIN}${RESET}"
