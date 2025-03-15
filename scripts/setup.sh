@@ -53,16 +53,16 @@ echo -e "\n${CYAN}🔹 Escolha a versão do PHP [${DEFAULT_PHP_VERSION}]:${RESET
 select PHP_VERSION in "8.3" "8.2" "8.1" "8.0" "7.4"; do
     PHP_VERSION=${PHP_VERSION:-$DEFAULT_PHP_VERSION}
     case $PHP_VERSION in
-        8.3|8.2|8.1|8.0|7.4 ) break;;
+        8.3|8.2|8.1|7.4 ) break;;
         * ) echo -e "${RED}❌ Opção inválida! Escolha uma versão suportada.${RESET}";;
     esac
 done
 
 # 🔹 Escolher a versão do Node.js
 echo -e "\n${CYAN}🔹 Escolha a versão do Node.js:${RESET}"
-select NODE_VERSION in "18" "20" "21"; do
+select NODE_VERSION in "18" "20"; do
     case $NODE_VERSION in
-        18|20|21 ) break;;
+        18|20 ) break;;
         * ) echo -e "${RED}❌ Opção inválida! Escolha uma versão suportada.${RESET}";;
     esac
 done
@@ -118,6 +118,17 @@ if [[ $THEME_TYPE == "sage" ]]; then
     done
 fi
 
+# Verificar e ajustar requisitos mínimos para Sage 11
+if [[ $THEME_TYPE == "sage" && $SAGE_VERSION == "11" ]]; then
+    PHP_VERSION="8.3"
+    NODE_VERSION="20"
+    WP_CORE_VERSION="latest"
+    echo -e "${YELLOW}🔹 Requisitos mínimos para Sage 11 ajustados:${RESET}"
+    echo -e "🛠️ Versão do PHP: ${YELLOW}${PHP_VERSION}${RESET}"
+    echo -e "📦 Node.js: ${YELLOW}${NODE_VERSION}${RESET}"
+    echo -e "📦 WordPress Core: ${YELLOW}${WP_CORE_VERSION}${RESET}"
+fi
+
 # Capturar o repositório Git
 GIT_REPOSITORY=$(git config --get remote.origin.url)
 if [[ -z "$GIT_REPOSITORY" ]]; then
@@ -168,6 +179,7 @@ for file in templates/*; do
         -e "s|{{GIT_REPOSITORY}}|${GIT_REPOSITORY}|g" \
         -e "s/{{NODE_VERSION}}/${NODE_VERSION}/g" \
         -e "s/{{WP_CORE_VERSION}}/${WP_CORE_VERSION}/g" \
+        -e "s/{{SAGE_VERSION}}/${SAGE_VERSION}/g" \
         -e "s/{{WP_DEBUG}}/${WP_DEBUG}/g" \
         -e "s/{{REDIS_ENABLED}}/${REDIS_ENABLED}/g" \
         "$file" > "$output_file"
