@@ -17,6 +17,9 @@ create_sage() {
     echo -e "${GREEN}📥 Criando projeto do tema baseado em sage versão: ${SAGE_VERSION}...${RESET}"
     cd $THEMES_PATH
     composer create-project roots/sage ${PROJECT_NAME} "${SAGE_VERSION}"
+    if [[ $SAGE_VERSION == 11 ]]; then
+        sed -i "s|/sage/|/${PROJECT_NAME}/|g" ${SAGE_PATH}/vite.config.js
+    fi
 }
 
 # Se o SAGE ainda não foi instalado, criamos o tema

@@ -94,6 +94,30 @@ else
     REDIS_ENABLED="false"
 fi
 
+# Perguntar sobre a criação do tema
+echo -e "\n${CYAN}🔹 Deseja criar um tema para o projeto?${RESET}"
+select THEME_OPTION in "Criar tema vazio" "Criar tema baseado no Sage" "Adicionar tema posteriormente"; do
+    case $THEME_OPTION in
+        "Criar tema vazio" ) THEME_TYPE="empty"; break;;
+        "Criar tema baseado no Sage" ) THEME_TYPE="sage"; break;;
+        "Adicionar tema posteriormente" ) THEME_TYPE="none"; break;;
+        * ) echo -e "${RED}❌ Opção inválida! Escolha uma opção válida.${RESET}";;
+    esac
+done
+
+# Se o usuário optar pelo Sage, perguntar a versão
+if [[ $THEME_TYPE == "sage" ]]; then
+    DEFAULT_SAGE_VERSION="11"
+    echo -e "\n${CYAN}🔹 Escolha a versão do Sage [${DEFAULT_SAGE_VERSION}]:${RESET}"
+    select SAGE_VERSION in "11" "10"; do
+        SAGE_VERSION=${SAGE_VERSION:-$DEFAULT_SAGE_VERSION}
+        case $SAGE_VERSION in
+            11|10 ) break;;
+            * ) echo -e "${RED}❌ Opção inválida! Escolha uma versão suportada.${RESET}";;
+        esac
+    done
+fi
+
 # Capturar o repositório Git
 GIT_REPOSITORY=$(git config --get remote.origin.url)
 if [[ -z "$GIT_REPOSITORY" ]]; then
@@ -157,6 +181,23 @@ echo -e "\n$(generate_salt)" >> .env
 shopt -u dotglob
 
 mv .code-workspace ${PROJECT_NAME}.code-workspace
+
+
+# Se o usuário optou por criar um tema vazio
+if [[ $THEME_TYPE == "empty" ]]; then
+    mkdir -p wp-content/themes/${PROJECT_NAME}
+    touch wp-content/themes/${PROJECT_NAME}/style.css
+    echo "/* Tema vazio para ${PROJECT_NAME} */" > wp-content/themes/${PROJECT_NAME}/style.css
+fi
+
+# Se o usuário optou por criar um tema baseado no Sage
+if [[ $THEME_TYPE == "sage" ]]; then
+    echo -e "${YELLOW}🔹 Instalando tema Sage versão ${SAGE_VERSION}...${RESET}"
+    # Copiar conteúdo do .lando.sage.yml para .lando.yml
+    echo -e "${YELLOW}🔹 Configurando Lando para Sage...${RESET}"
+    echo -e "\n# Sage configuration start\n$(cat .lando.sage.yml)\n# Sage configuration end" >> .lando.yml
+    rm .lando.sage.yml
+fi
 
 echo -e "${GREEN}✅ Arquivos gerados com sucesso!${RESET}\n"
 
