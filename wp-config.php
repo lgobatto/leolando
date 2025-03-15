@@ -139,8 +139,10 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strpos($_SERVER['HTTP_X_FORWARD
 
 /** URL routing (Optional, may not be necessary) */
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
-define('WP_HOME', $protocol . getenv_docker('WORDPRESS_SITE_URL', 'wordpress'));
-define('WP_SITEURL', $protocol . getenv_docker('WORDPRESS_SITE_URL', 'wordpress'));
+$siteUrl = getenv_docker('WORDPRESS_SITE_URL', 'localhost');
+$siteUrl = (strpos($siteUrl, 'http') === 0) ? $siteUrl : $protocol . $siteUrl;
+define('WP_HOME', $siteUrl);
+define('WP_SITEURL', $siteUrl);
 
 // (we include this by default because reverse proxying is extremely common in container environments)
 
