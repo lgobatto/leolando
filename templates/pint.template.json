@@ -1,0 +1,38 @@
+{
+  "preset": "psr12",
+  "rules": {
+    "array_indentation": true,
+    "braces": {
+      "allow_single_line_closure": true
+    },
+    "braces_position": {
+      "functions_opening_brace": "same_line",
+      "control_structures_opening_brace": "same_line",
+      "classes_opening_brace": "same_line",
+      "allow_single_line_empty_anonymous_classes": true,
+      "allow_single_line_anonymous_functions": false
+    },
+    "concat_space": {
+      "spacing": "one"
+    },
+    "binary_operator_spaces": {
+      "default": "align_single_space"
+    },
+    "control_structure_continuation_position": {
+      "position": "next_line"
+    },
+    "indentation_type": true,
+    "line_ending": true,
+    "no_trailing_whitespace": true,
+    "single_quote": true,
+    "phpdoc_indent": true,
+    "phpdoc_trim": true,
+    "space_after_semicolon": true,
+    "trim_array_spaces": true,
+    "not_operator_with_successor_space": false
+  },
+  "exclude": [
+    "vendor",
+    "node_modules"
+  ]
+}
