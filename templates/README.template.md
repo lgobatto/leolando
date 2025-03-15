@@ -1,59 +1,133 @@
-# {{PROJECT_NAME}}
+# 🚀 WordPress Development Stack
 
-**Versão:** {{PROJECT_VERSION}}
-**Autor(es):** {{AUTHOR}}
+Bem-vindo ao ambiente de desenvolvimento do WordPress! 🎉
+Aqui, tudo foi cuidadosamente configurado para que você possa focar no código, sem se preocupar com configurações demoradas.
 
-## 🚀 Como rodar o ambiente:
-1. Instale as dependências:
+## 📜 Visão Geral
+
+Este projeto utiliza uma abordagem moderna e modular para desenvolver aplicações WordPress com **Composer**, **Docker**, **Lando**, **Xdebug** e outras ferramentas que otimizam o fluxo de trabalho.
+
+O template foi projetado para **separar o core do WordPress** do código personalizado, versionando apenas o necessário e garantindo segurança, performance e flexibilidade.
+
+---
+
+## 📂 Estrutura do Projeto
+
+A estrutura de diretórios foi inspirada em projetos como **Bedrock** e **Radicle** para otimizar a organização:
+
+```plaintext
+.
+├── config/              # Arquivos de configuração (php.ini, .env, etc.)
+├── db_init/             # Arquivos de inicialização do banco de dados
+├── scripts/             # Scripts auxiliares (setup, configuração de hosts, etc.)
+├── templates/           # Modelos de arquivos do projeto
+├── wp/                  # Core do WordPress (ignorado no Git)
+├── wp-content/          # Plugins, temas e uploads
+│   ├── mu-plugins/      # Must-use plugins (plugins customizados)
+│   ├── plugins/         # Plugins convencionais
+│   ├── themes/          # Temas ativos
+│   └── uploads/         # Uploads (não versionado)
+├── vendor/              # Dependências gerenciadas pelo Composer (não versionado)
+├── .lando.yml           # Configuração do Lando
+├── docker-compose.yml   # Configuração do Docker Compose
+├── Makefile             # Automação de tarefas
+├── composer.json        # Gerenciamento de dependências do WordPress
+└── README.md            # Este arquivo
+```
+
+---
+
+## 🛠️ Configuração e Desenvolvimento
+
+### 🔧 1. Configurando o Ambiente
+
+1. **Clone o repositório**
+   ```sh
+   git clone {{GIT_REPOSITORY}} {{PROJECT_NAME}}
+   cd {{PROJECT_NAME}}
+   ```
+
+2. **Configure os hosts locais** (necessário para acessar pelo navegador)
+   ```sh
+   ./scripts/set-hosts.sh
+   ```
+
+3. **Suba o ambiente com Lando**
    ```sh
    lando start
    ```
 
-2. Acesse http://{{PROJECT_NAME}}.lndo.site
+4. **Acesse o ambiente local no navegador**
+   - 📌 http://{{PROJECT_DOMAIN}}
+   - 🔒 https://{{PROJECT_DOMAIN}}
 
-## 📚 Boas Práticas de Desenvolvimento
+---
 
-### Estrutura do Projeto
-- **wp-content/plugins/**: Plugins do WordPress.
-- **wp-content/themes/**: Temas do WordPress.
-- **wp-content/mu-plugins/**: Plugins obrigatórios do WordPress.
-- **wp-content/languages/**: Arquivos de tradução.
+### 📦 2. Gerenciamento de Pacotes com Composer
 
-### Versionamento
-- Utilize o Git para versionar o código.
-- Crie branches para novas funcionalidades e correções de bugs.
-- Faça commits pequenos e descritivos.
+Utilizamos **Composer** para gerenciar os plugins e temas do WordPress, garantindo um ambiente consistente.
+Todos os comandos devem ser executados **dentro do ambiente Lando**.
 
-### Código
-- Siga as boas práticas de codificação do WordPress.
-- Utilize hooks e filtros sempre que possível.
-- Documente seu código utilizando comentários.
+#### 🔍 Instalar dependências do projeto:
+```sh
+lando composer install
+```
 
-### Segurança
-- Valide e sanitize todas as entradas de dados.
-- Utilize funções de escape ao exibir dados no front-end.
-- Mantenha o WordPress e seus plugins sempre atualizados.
+#### 📌 Adicionar um plugin via Composer:
+```sh
+lando composer require wpackagist-plugin/advanced-custom-fields
+```
 
-### Performance
-- Utilize cache sempre que possível.
-- Minimize o uso de plugins desnecessários.
-- Otimize imagens e outros recursos estáticos.
+#### 🔄 Atualizar dependências:
+```sh
+lando composer update
+```
 
-### Testes
-- Escreva testes para suas funcionalidades.
-- Utilize ferramentas como PHPUnit para testes unitários.
-- Realize testes de integração e aceitação.
+---
 
-### Deploy
-- Utilize ferramentas de CI/CD para automatizar o deploy.
-- Mantenha um ambiente de staging para testes antes do deploy em produção.
-- Monitore a aplicação após o deploy para identificar possíveis problemas.
+### 🏗️ 3. Construção do Tema
 
-## 🛠️ Ferramentas Utilizadas
-- **Lando**: Para gerenciar o ambiente de desenvolvimento.
-- **PHP**: Linguagem de programação principal.
-- **Node.js**: Para gerenciar dependências front-end.
-- **WordPress**: CMS utilizado no projeto.
+Se o projeto possuir um tema personalizado, é necessário instalar as dependências e rodar o build:
 
-## 📄 Licença
-Este projeto está licenciado sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+1. **Instalar dependências do tema:**
+   ```sh
+   lando yarn install (necessário informar o path do tema)
+   ```
+
+2. **Compilar os assets do tema:**
+   ```sh
+   lando yarn build (necessário informar o path do tema)
+   ```
+
+---
+
+## 🐞 Debugging com Xdebug
+
+O **Xdebug** já está configurado para permitir depuração via **VS Code**. Basta abrir o **workspace** no VS Code e ativar o **debugger**.
+
+📜 Configurações adicionais podem ser encontradas no arquivo [`environment.md`](./docs/environment.md).
+
+---
+
+## 📜 Boas Práticas
+
+Aqui estão algumas práticas recomendadas para manter um código limpo e sustentável:
+
+✔ **Versionamento correto:** Apenas código relevante é versionado.
+✔ **Ambiente isolado:** Evitamos dependências do sistema operacional local.
+✔ **Plugins via Composer:** Sem instalação manual de plugins.
+✔ **Automação:** Tarefas manuais são reduzidas ao mínimo.
+
+Para mais detalhes, confira [`good-practices.md`](./docs/good-practices.md).
+
+---
+
+## 🎯 Conclusão
+
+Com esse setup, conseguimos um **ambiente moderno, rápido e seguro** para desenvolver aplicações WordPress de forma profissional. 🚀
+
+Caso encontre problemas, verifique a documentação ou entre em contato com a equipe.
+
+Happy coding! 🎉
+
+Me avise se quiser ajudar ou sugerir algo! 🚀🔥
