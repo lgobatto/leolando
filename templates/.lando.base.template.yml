@@ -1,0 +1,67 @@
+name: {{PROJECT_NAME}}
+recipe: wordpress
+config:
+  webroot: ./
+  via: {{SERVER_TYPE}}
+  php: {{PHP_VERSION}}
+  xdebug: true
+  config:
+    php: config/php.ini
+services:
+  node:
+    type: node:{{NODE_VERSION}}
+  cache:
+    type: redis
+    portforward: 6379
+  appserver:
+    build_as_root:
+      - "apt-get update"
+    run:
+      - "bash scripts/wp-setup.sh"
+    env_file:
+      - .env
+logs:
+  appserver:
+    - /var/log/nginx
+    - /var/log/php
+tooling:
+  npm:
+    service: node
+  node:
+    service: node
+  yarn:
+    service: node
+  yarn-upgrade:
+    service: node
+    cmd: yarn upgrade --latest
+  yarn-clean-install:
+    service: node
+    cmd:
+      - rm -rf node_modules
+      - yarn install
+  phpcs:
+    service: appserver
+    cmd: /app/vendor/bin/phpcs --standard=PSR12 .
+  pint:
+    service: appserver
+    cmd:
+      - bash -c '[ -f ./pint.json ] && /app/vendor/bin/pint . -v --config ./pint.json || /app/vendor/bin/pint . -v --config /app/pint.json'
+  lint:
+    service: node
+    usage: "$0 lint [-f]"
+    cmd:
+      - yarn eslint
+      - yarn stylelint **/*.{css,scss,vue}
+  composer-update:
+    service: appserver
+    cmd: composer update --with-dependencies
+  composer-clean-install:
+    service: appserver
+    cmd: rm -rf vendor && composer install
+  php:
+    service: appserver
+  wp:
+    service: appserver
+    cmd: wp
+  redis-cli:
+    service: cache

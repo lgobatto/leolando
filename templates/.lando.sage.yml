@@ -1,0 +1,13 @@
+services:
+  appserver:
+    run:
+      - "bash scripts/sage-setup.sh"
+
+tooling:
+  sage-build:
+    description: "Build the Sage theme"
+    dir: /app/wp-content/themes/landoleo
+    cmd:
+      - appserver: composer install
+      - node: yarn install
+      - node: yarn build

@@ -1,9 +1,9 @@
 # 🔹 WordPress Core (não versionamos o core, ele será gerenciado pelo ambiente)
-wp-*.php
-index.php
-license.txt
-readme.html
-xmlrpc.php
+/wp-*.php
+/index.php
+/license.txt
+/readme.html
+/xmlrpc.php
 wp-admin
 wp-includes
 
@@ -17,10 +17,12 @@ wp-includes
 /wp-content/cache
 
 # 🔹 Plugins e temas que não estamos desenvolvendo
-/wp-content/plugins/**/
-/wp-content/themes/**/
-!/wp-content/plugins/{{PROJECT_NAME}}
-!/wp-content/themes/{{PROJECT_NAME}}
+wp-content/plugins/**/*
+wp-content/themes/**/*
+!wp-content/plugins/{{PROJECT_NAME}}
+!wp-content/plugins/{{PROJECT_NAME}}/**/*
+!wp-content/themes/{{PROJECT_NAME}}
+!wp-content/themes/{{PROJECT_NAME}}/**/*
 
 # 🔹 Must-Use Plugins (mantemos apenas os customizados)
 wp-content/mu-plugins/**/*
