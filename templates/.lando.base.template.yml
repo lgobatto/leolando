@@ -10,6 +10,11 @@ config:
 services:
   node:
     type: node:{{NODE_VERSION}}
+    ssl: true
+    sslExpose: false
+    portforward: 3009
+    ports: 
+      - 3009:3009
   cache:
     type: redis
     portforward: 6379

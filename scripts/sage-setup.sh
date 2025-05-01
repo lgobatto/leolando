@@ -18,7 +18,8 @@ create_sage() {
     cd $THEMES_PATH
     composer create-project roots/sage ${PROJECT_NAME} "${SAGE_VERSION}"
     if [[ $SAGE_VERSION == 11 ]]; then
-        sed -i "s|/sage/|/${PROJECT_NAME}/|g" ${SAGE_PATH}/vite.config.js
+        rm -rf ${SAGE_PATH}/vite.config.js
+        mv ./vite.config.ts ${SAGE_PATH}/vite.config.js
     fi
 }
 
