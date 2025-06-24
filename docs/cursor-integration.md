@@ -61,7 +61,7 @@ hotfix: fix critical security vulnerability
 
 ### **Configurações Específicas**
 
-O arquivo `.cursorrules` contém todas as regras para a IA:
+O arquivo `.cursorrules` (gerado dinamicamente pelo setup) contém todas as regras para a IA:
 
 ```yaml
 cursor.commitMessageRules:
@@ -166,7 +166,7 @@ refactor(database): optimize user queries
 ### **Problema: Commit Message não segue padrão**
 
 **Solução:**
-1. Verifique se `.cursorrules` está no projeto
+1. Verifique se `.cursorrules` foi gerado pelo setup.sh
 2. Reinicie o Cursor
 3. Use `lando npm run commit` como alternativa
 
@@ -210,7 +210,7 @@ lando wp --info         # Info do WordPress
 Para configurações mais avançadas, edite:
 
 - `{PROJECT_NAME}.code-workspace`: Configuração completa do workspace
-- `.cursorrules`: Regras para IA
+- `.cursorrules`: Regras para IA (gerado dinamicamente pelo setup)
 
 ---
 
