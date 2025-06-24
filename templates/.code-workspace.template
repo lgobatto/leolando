@@ -1,39 +1,281 @@
 {
   "folders": [
     {
-      "path": ".",
-      "name": "Root"
+      "name": "🌿 {{PROJECT_NAME}}",
+      "path": "."
     },
     {
       "path": "./wp-content/themes/{{PROJECT_NAME}}",
-      "name": "Theme"
+      "name": "🎨 Theme"
     },
     {
       "path": "./wp-content/plugins/{{PROJECT_NAME}}",
-      "name": "Plugin"
+      "name": "🔌 Plugin"
     }
   ],
   "settings": {
+    "git.inputValidation": "always",
+    "git.inputValidationLength": 72,
+    "git.inputValidationSubjectLength": 50,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "git.suggestSmartCommit": false,
+    "git.autoStash": true,
+    "git.allowNoVerifyCommit": false,
+
+    // Configurações específicas para Conventional Commits
+    "git.commitTemplate": ".gitmessage",
+    "git.inputValidationSubjectFormat": "conventional",
+
+    // Configurações do Cursor para IA
+    "cursor.commitMessageTemplate": "conventional",
+    "cursor.commitMessageRules": {
+      "types": [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "build",
+        "ci",
+        "chore",
+        "revert",
+        "wip",
+        "hotfix"
+      ],
+      "scopes": [
+        "auth",
+        "api",
+        "ui",
+        "db",
+        "config",
+        "docs",
+        "tests",
+        "ci",
+        "build",
+        "deploy",
+        "security",
+        "performance",
+        "wordpress",
+        "lando"
+      ],
+      "maxLength": 72,
+      "subjectMaxLength": 50,
+      "bodyMaxLength": 72,
+      "footerMaxLength": 72,
+      "requireScope": false,
+      "requireBody": false,
+      "requireFooter": false
+    },
+
+    // Configurações de formatação
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "source.organizeImports": "explicit"
+    },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
-    "files.exclude": {
-      "**/.git": true,
-      "**/.DS_Store": true,
-      "**/node_modules": true,
-      "**/vendor": true,
-    },
-    "php.validate.executablePath": "/usr/local/bin/php",
+
+    // Configurações de linting
+    "eslint.validate": [
+      "javascript",
+      "typescript",
+      "php"
+    ],
+
+    // Configurações do PHP
+    "php.validate.enable": true,
     "php.suggest.basic": false,
+    "php.validate.executablePath": "/usr/local/bin/php",
     "phpcs.executablePath": "${workspaceFolder}/vendor/bin/phpcs",
     "phpcbf.executablePath": "${workspaceFolder}/vendor/bin/phpcbf",
-    "phpstan.executablePath": "${workspaceFolder}/vendor/bin/phpstan"
+    "phpstan.executablePath": "${workspaceFolder}/vendor/bin/phpstan",
+
+    // Configurações do workspace
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/vendor": true,
+      "**/.git": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true
+    },
+
+    // Configurações de terminal
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.env.linux": {
+      "LANDO_DISABLE_CACHE": "1"
+    },
+
+    // Configurações de extensões recomendadas
+    "extensions.ignoreRecommendations": false,
+
+    // Configurações de debug
+    "debug.allowBreakpointsEverywhere": true,
+
+    // Configurações de GitLens (se instalado)
+    "gitlens.codeLens.enabled": true,
+    "gitlens.codeLens.recentChange.enabled": true,
+    "gitlens.codeLens.authors.enabled": true,
+    "gitlens.hovers.enabled": true,
+    "gitlens.hovers.detailsMarkdownFormat": "conventional"
+  },
+  "extensions": {
+    "recommendations": [
+      // Git e Conventional Commits
+      "eamodio.gitlens",
+      "ms-vscode.vscode-json",
+      "streetsidesoftware.code-spell-checker",
+      "vivaxy.vscode-conventional-commits",
+
+      // PHP e WordPress
+      "bmewburn.vscode-intelephense-client",
+      "wordpresstoolbox.wordpress-toolbox",
+      "tungvn.wordpress-snippet",
+      "junstyle.php-cs-fixer",
+      "felixfbecker.php-debug",
+
+      // JavaScript/TypeScript
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "bradlc.vscode-tailwindcss",
+
+      // Docker e Lando
+      "ms-azuretools.vscode-docker",
+      "ms-vscode-remote.remote-containers",
+
+      // Produtividade
+      "ms-vscode.vscode-typescript-next",
+      "formulahendry.auto-rename-tag",
+      "christian-kohler.path-intellisense",
+      "ms-vscode.vscode-todo-highlight",
+      "mhutchie.git-graph",
+
+      // Temas e Ícones
+      "pkief.material-icon-theme",
+      "zhuangtongfa.material-theme",
+
+      // Debugging
+      "xdebug.php-debug",
+
+      // Markdown
+      "yzhang.markdown-all-in-one",
+      "davidanson.vscode-markdownlint",
+
+      // EditorConfig
+      "editorconfig.editorconfig"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "🚀 Start Lando",
+        "type": "shell",
+        "command": "lando start",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "📦 Install Dependencies",
+        "type": "shell",
+        "command": "lando npm install",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "🔧 Setup GitFlow",
+        "type": "shell",
+        "command": "bash scripts/setup-gitflow.sh",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "🧪 Run Tests",
+        "type": "shell",
+        "command": "lando npm run test",
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "🔍 Run Lint",
+        "type": "shell",
+        "command": "lando npm run lint",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "📝 Interactive Commit",
+        "type": "shell",
+        "command": "lando npm run commit",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "🔧 Composer Install",
+        "type": "shell",
+        "command": "lando composer install",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "🔧 Composer Update",
+        "type": "shell",
+        "command": "lando composer update",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        }
+      }
+    ]
   },
   "launch": {
     "version": "0.2.0",
     "configurations": [
       {
-        "name": "Listen for Xdebug",
+        "name": "🐛 Listen for Xdebug",
         "type": "php",
         "request": "launch",
         "port": 9003,
@@ -47,16 +289,6 @@
           "max_depth": 3
         }
       }
-    ]
-  },
-  "extensions": {
-    "recommendations": [
-      "felixfbecker.php-debug",
-      "bmewburn.vscode-intelephense-client",
-      "esbenp.prettier-vscode",
-      "dbaeumer.vscode-eslint",
-      "editorconfig.editorconfig",
-      "mhutchie.git-graph"
     ]
   }
 }

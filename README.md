@@ -69,6 +69,23 @@ Este script irá:
 ✅ Configurar aliases úteis
 ✅ Configurar template de commits
 
+### **Integração com Cursor IDE**
+
+O projeto já vem configurado com **integração completa para o Cursor IDE**! Após executar o `setup.sh`, você terá:
+
+- **🎯 .cursorrules**: Regras para a IA do Cursor
+- **⚙️ .vscode/settings.json**: Configurações do workspace
+- **📦 .vscode/extensions.json**: Extensões recomendadas
+- **🏗️ {PROJECT_NAME}.code-workspace**: Workspace completo
+
+**Para usar "Generate commit message" no Cursor:**
+1. Abra o projeto no Cursor: `code {PROJECT_NAME}.code-workspace`
+2. Stage suas mudanças no Source Control
+3. Clique em "Generate commit message"
+4. A IA respeitará automaticamente o padrão Conventional Commits
+
+📚 **Para mais detalhes sobre a integração com Cursor:** `docs/cursor-integration.md`
+
 ### **Setup Manual**
 
 Se preferir configurar manualmente:
