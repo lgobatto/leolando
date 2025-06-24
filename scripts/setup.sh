@@ -155,7 +155,6 @@ generate_salt() {
 echo -e "${BLUE}📄 Gerando arquivos de configuração...${RESET}"
 
 mkdir -p wp-content/plugins wp-content/plugins/${PROJECT_NAME} wp-content/themes wp-content/themes/${PROJECT_NAME} wp-content/mu-plugins wp-content/languages
-mkdir -p .vscode
 touch wp-content/plugins/${PROJECT_NAME}/.gitkeep wp-content/themes/${PROJECT_NAME}/.gitkeep
 
 # Habilita a listagem de arquivos ocultos no globbing do shell
@@ -167,11 +166,6 @@ for file in templates/*; do
 
     # Remove qualquer ocorrência de ".template" no nome do arquivo
     output_file="$(echo "$output_file" | sed 's/.template//g')"
-
-    # Se for um arquivo de configuração do VS Code, colocar na pasta .vscode
-    if [[ "$output_file" == ".vscode-"* ]]; then
-        output_file=".vscode/${output_file#.vscode-}"
-    fi
 
     echo -e "${YELLOW}🔹 Gerando arquivo:${RESET} ${output_file}"
     sed -e "s/{{PROJECT_NAME}}/${PROJECT_NAME}/g" \

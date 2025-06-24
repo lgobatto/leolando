@@ -8,7 +8,7 @@ Este documento explica como configurar e usar o Cursor IDE com o projeto Leoland
 
 ```bash
 # Abrir o workspace do projeto
-code leolando.code-workspace
+code {PROJECT_NAME}.code-workspace
 ```
 
 Ou simplesmente:
@@ -19,7 +19,7 @@ code .
 
 ### **2. Instalar Extensões Recomendadas**
 
-O Cursor irá sugerir automaticamente as extensões recomendadas. As principais são:
+O Cursor irá sugerir automaticamente as extensões recomendadas através do workspace. As principais são:
 
 - **GitLens**: Histórico e informações do Git
 - **Conventional Commits**: Suporte a Conventional Commits
@@ -116,7 +116,7 @@ Ctrl+Shift+D          # Debug
 
 ### **2. Configurações Personalizadas**
 
-Edite `.vscode/settings.json` para personalizar:
+As configurações estão centralizadas no workspace `{PROJECT_NAME}.code-workspace`:
 
 ```json
 {
@@ -175,7 +175,7 @@ refactor(database): optimize user queries
 **Solução:**
 1. Verifique se as extensões estão instaladas
 2. Recarregue o workspace
-3. Verifique configurações em `.vscode/extensions.json`
+3. Verifique se está usando o arquivo `.code-workspace`
 
 ### **Problema: Lando não funciona no terminal**
 
@@ -209,9 +209,8 @@ lando wp --info         # Info do WordPress
 
 Para configurações mais avançadas, edite:
 
-- `.vscode/settings.json`: Configurações do workspace
+- `{PROJECT_NAME}.code-workspace`: Configuração completa do workspace
 - `.cursorrules`: Regras para IA
-- `leolando.code-workspace`: Configuração do workspace
 
 ---
 

@@ -74,15 +74,20 @@ Este script irá:
 O projeto já vem configurado com **integração completa para o Cursor IDE**! Após executar o `setup.sh`, você terá:
 
 - **🎯 .cursorrules**: Regras para a IA do Cursor
-- **⚙️ .vscode/settings.json**: Configurações do workspace
-- **📦 .vscode/extensions.json**: Extensões recomendadas
-- **🏗️ {PROJECT_NAME}.code-workspace**: Workspace completo
+- **🏗️ {PROJECT_NAME}.code-workspace**: Workspace completo com todas as configurações
 
 **Para usar "Generate commit message" no Cursor:**
 1. Abra o projeto no Cursor: `code {PROJECT_NAME}.code-workspace`
 2. Stage suas mudanças no Source Control
 3. Clique em "Generate commit message"
 4. A IA respeitará automaticamente o padrão Conventional Commits
+
+**O workspace inclui:**
+- ✅ Configurações de Conventional Commits
+- ✅ Extensões recomendadas para WordPress + DevOps
+- ✅ Tasks integradas (Lando, GitFlow, etc.)
+- ✅ Configuração de debug com Xdebug
+- ✅ Integração completa com a IA do Cursor
 
 📚 **Para mais detalhes sobre a integração com Cursor:** `docs/cursor-integration.md`
 
