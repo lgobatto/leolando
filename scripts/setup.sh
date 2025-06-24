@@ -136,6 +136,21 @@ if [[ -z "$GIT_REPOSITORY" ]]; then
     read -p "Informe a URL do repositório manualmente: " GIT_REPOSITORY
 fi
 
+# Extrair a URL base do repositório para o .versionrc.js
+if [[ $GIT_REPOSITORY == *"github.com"* ]]; then
+    # Para GitHub: https://github.com/org/repo.git -> https://github.com/org/repo
+    GIT_REPO_URL=$(echo "$GIT_REPOSITORY" | sed 's/\.git$//')
+elif [[ $GIT_REPOSITORY == *"gitlab.com"* ]]; then
+    # Para GitLab: https://gitlab.com/org/repo.git -> https://gitlab.com/org/repo
+    GIT_REPO_URL=$(echo "$GIT_REPOSITORY" | sed 's/\.git$//')
+elif [[ $GIT_REPOSITORY == *"bitbucket.org"* ]]; then
+    # Para Bitbucket: https://bitbucket.org/org/repo.git -> https://bitbucket.org/org/repo
+    GIT_REPO_URL=$(echo "$GIT_REPOSITORY" | sed 's/\.git$//')
+else
+    # Para outros repositórios, usar como está
+    GIT_REPO_URL=$(echo "$GIT_REPOSITORY" | sed 's/\.git$//')
+fi
+
 echo -e "\n${GREEN}✅ Informações capturadas com sucesso!${RESET}\n"
 
 # Função para gerar salts do WordPress
@@ -177,6 +192,7 @@ for file in templates/*; do
         -e "s/{{SERVER_TYPE}}/${SERVER_TYPE}/g" \
         -e "s/{{PHP_VERSION}}/${PHP_VERSION}/g" \
         -e "s|{{GIT_REPOSITORY}}|${GIT_REPOSITORY}|g" \
+        -e "s|{{GIT_REPO_URL}}|${GIT_REPO_URL}|g" \
         -e "s/{{NODE_VERSION}}/${NODE_VERSION}/g" \
         -e "s/{{WP_CORE_VERSION}}/${WP_CORE_VERSION}/g" \
         -e "s/{{SAGE_VERSION}}/${SAGE_VERSION}/g" \

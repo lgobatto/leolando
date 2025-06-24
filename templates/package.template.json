@@ -1,7 +1,7 @@
 {
-  "name": "leolando-wordpress",
-  "version": "1.0.0",
-  "description": "Template WordPress com Lando e DevOps completo",
+  "name": "{{PROJECT_NAME}}-wordpress",
+  "version": "{{PROJECT_VERSION}}",
+  "description": "Projeto WordPress {{PROJECT_NAME}} com Lando e DevOps completo",
   "private": true,
   "scripts": {
     "prepare": "husky install",
@@ -38,16 +38,17 @@
     "lando",
     "devops",
     "ci-cd",
-    "gitflow"
+    "gitflow",
+    "{{PROJECT_NAME}}"
   ],
-  "author": "Código do Léo",
+  "author": "{{AUTHOR}} <{{AUTHOR_EMAIL}}>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codigodoleo/leolando.git"
+    "url": "{{GIT_REPOSITORY}}"
   },
   "bugs": {
-    "url": "https://github.com/codigodoleo/leolando/issues"
+    "url": "{{GIT_REPO_URL}}/issues"
   },
-  "homepage": "https://github.com/codigodoleo/leolando#readme"
+  "homepage": "{{GIT_REPO_URL}}#readme"
 }

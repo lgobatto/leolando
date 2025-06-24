@@ -1,4 +1,3 @@
-
 # 📜 Boas Práticas de Desenvolvimento
 
 Este guia tem como objetivo definir as melhores práticas para manter **consistência, qualidade e organização** no desenvolvimento do projeto.
@@ -47,6 +46,8 @@ O projeto está organizado da seguinte forma:
 
 ✔ Configuração do ambiente (`.lando.yml`, `Makefile`)
 
+✔ **Templates de configuração** (`templates/`) → Geram arquivos dinâmicos
+
 ### ❌ O que **não** é versionado:
 ❌ O **WordPress Core** (`wp/`) → Instalado via `composer install`
 
@@ -56,7 +57,21 @@ O projeto está organizado da seguinte forma:
 
 ❌ Plugins e temas baixados via WordPress Admin Ou via Composer (`wp-content/plugins/`, `wp-content/themes/`)
 
+❌ **Arquivos de configuração gerados** (`.versionrc.js`, `.cursorrules`, workspace) → Gerados dinamicamente
+
 O **`.gitignore`** está configurado para evitar que arquivos desnecessários sejam adicionados ao repositório.
+
+### 🔧 Arquivos de Configuração Dinâmicos
+
+Alguns arquivos são gerados automaticamente pelo script `setup.sh` a partir de templates:
+
+- **`.versionrc.js`** → Configuração do Standard Version (releases automáticos)
+- **`.cursorrules`** → Regras para IA do Cursor
+- **`commitlint.config.js`** → Configuração do Commitlint (validação de commits)
+- **`package.json`** → Configuração do Node.js e dependências
+- **`{projeto}.code-workspace`** → Workspace do VS Code
+
+Esses arquivos contêm variáveis personalizadas como URLs do repositório, nomes de projeto, etc.
 
 ---
 

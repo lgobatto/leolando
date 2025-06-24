@@ -16,8 +16,8 @@ module.exports = {
   ],
   releaseCommitMessageFormat: 'chore(release): 📦 {{currentTag}}',
   issuePrefixes: ['#'],
-  commitUrlFormat: 'https://github.com/codigodoleo/leolando/commit/{{hash}}',
-  compareUrlFormat: 'https://github.com/codigodoleo/leolando/compare/{{previousTag}}...{{currentTag}}',
-  issueUrlFormat: 'https://github.com/codigodoleo/leolando/issues/{{id}}',
+  commitUrlFormat: '{{GIT_REPO_URL}}/commit/{{hash}}',
+  compareUrlFormat: '{{GIT_REPO_URL}}/compare/{{previousTag}}...{{currentTag}}',
+  issueUrlFormat: '{{GIT_REPO_URL}}/issues/{{id}}',
   userUrlFormat: 'https://github.com/{{user}}'
 };

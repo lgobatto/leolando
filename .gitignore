@@ -11,6 +11,9 @@ wp-content/
 # 🔹 Arquivos de configuração sensíveis
 wp-config*.php
 !wp-config.php
+.versionrc.js
+commitlint.config.js
+package.json
 
 # 🔹 Diretórios de uploads e cache
 wp-content/uploads/

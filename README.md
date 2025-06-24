@@ -73,8 +73,8 @@ Este script irá:
 
 O projeto já vem configurado com **integração completa para o Cursor IDE**! Após executar o `setup.sh`, você terá:
 
-- **🎯 .cursorrules**: Regras para a IA do Cursor
 - **🏗️ {PROJECT_NAME}.code-workspace**: Workspace completo com todas as configurações
+- **🎯 .cursorrules**: Regras para a IA do Cursor (gerado dinamicamente)
 
 **Para usar "Generate commit message" no Cursor:**
 1. Abra o projeto no Cursor: `code {PROJECT_NAME}.code-workspace`
