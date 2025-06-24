@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Validar commit usando commitlint via Lando
+lando npx --no -- commitlint --edit $1

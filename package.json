@@ -1,0 +1,53 @@
+{
+  "name": "leolando-wordpress",
+  "version": "1.0.0",
+  "description": "Template WordPress com Lando e DevOps completo",
+  "private": true,
+  "scripts": {
+    "prepare": "husky install",
+    "commit": "lando git-cz",
+    "lint": "lando eslint . --ext .js,.ts,.php",
+    "lint:fix": "lando eslint . --ext .js,.ts,.php --fix",
+    "test": "echo \"No tests specified\" && exit 0",
+    "release": "lando standard-version",
+    "release:minor": "lando standard-version --release-as minor",
+    "release:major": "lando standard-version --release-as major",
+    "release:patch": "lando standard-version --release-as patch",
+    "composer:install": "lando composer install",
+    "composer:update": "lando composer update",
+    "wp:info": "lando wp --info",
+    "wp:help": "lando wp help"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@commitlint/prompt": "^18.4.3",
+    "commitizen": "^4.3.0",
+    "conventional-changelog-cli": "^4.1.0",
+    "eslint": "^8.55.0",
+    "husky": "^8.0.3",
+    "standard-version": "^9.5.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/prompt"
+    }
+  },
+  "keywords": [
+    "wordpress",
+    "lando",
+    "devops",
+    "ci-cd",
+    "gitflow"
+  ],
+  "author": "Código do Léo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codigodoleo/leolando.git"
+  },
+  "bugs": {
+    "url": "https://github.com/codigodoleo/leolando/issues"
+  },
+  "homepage": "https://github.com/codigodoleo/leolando#readme"
+}

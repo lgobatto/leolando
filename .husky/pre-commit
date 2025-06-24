@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Executar linting antes do commit usando Lando
+echo "🔍 Executando verificações de código via Lando..."
+lando npm run lint
+
+# Verificar se há arquivos não versionados importantes
+echo "📁 Verificando arquivos não versionados..."
+if git diff --cached --name-only | grep -E "\.(php|js|ts|json|yml|yaml)$" > /dev/null; then
+  echo "✅ Arquivos importantes detectados para commit"
+else
+  echo "⚠️  Nenhum arquivo importante detectado para commit"
+fi
