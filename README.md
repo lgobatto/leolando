@@ -1,148 +1,133 @@
-# 🏗️ Configuração do Ambiente WordPress com Lando
+# 🚀 WordPress Development Stack
 
-Bem-vindo ao nosso **template de desenvolvimento WordPress** com Léo+Lando! 🎉
+Bem-vindo ao ambiente de desenvolvimento do WordPress! 🎉
+Aqui, tudo foi cuidadosamente configurado para que você possa focar no código, sem se preocupar com configurações demoradas.
 
-Este template foi criado para oferecer um ambiente de desenvolvimento **rápido, confiável e padronizado**, facilitando a colaboração e o gerenciamento do projeto.
+## 📜 Visão Geral
 
----
+Este projeto utiliza uma abordagem moderna e modular para desenvolver aplicações WordPress com **Composer**, **Docker**, **Lando**, **Xdebug** e outras ferramentas que otimizam o fluxo de trabalho.
 
-## 🚀 1. Criando o Repositório a Partir do Template
-
-Como este é um **template** no GitHub, você não deve cloná-lo diretamente. Em vez disso, siga estes passos:
-
-1. **Acesse o template no GitHub**.
-2. Clique no botão **"Use this template"**.
-3. Escolha **"Create a new repository"**.
-4. Dê um nome ao seu projeto e clique em **"Create repository from template"**.
-
-Agora, você tem seu próprio repositório baseado neste template. 🎉
+O template foi projetado para **separar o core do WordPress** do código personalizado, versionando apenas o necessário e garantindo segurança, performance e flexibilidade.
 
 ---
 
-## 📥 2. Clonando o Repositório e Executando o Setup
+## 📂 Estrutura do Projeto
 
-Agora que seu repositório está criado, vamos cloná-lo e configurá-lo:
+A estrutura de diretórios foi inspirada em projetos como **Bedrock** e **Radicle** para otimizar a organização:
 
-```bash
-# Clone o repositório
-$ git clone git@github.com:seu-usuario/seu-repositorio.git
-
-# Acesse a pasta do projeto
-$ cd seu-repositorio
-```
-
-Agora, rode o script de configuração para personalizar o ambiente:
-
-```bash
-$ bash scripts/setup.sh
-```
-
-Durante a execução, algumas perguntas serão feitas para personalizar seu ambiente, como:
-✅ Nome do projeto  
-✅ Versão inicial  
-✅ Autor e e-mail  
-✅ Versão do PHP e do Node.js  
-✅ Ativação do WP_DEBUG  
-
-Após concluir esse passo, seu ambiente estará configurado! 🎉
-
----
-
-## 🌍 3. Configurando o Arquivo de Hosts (Somente no Linux/macOS)
-
-Para acessar o site localmente com um domínio amigável, adicione o domínio ao seu arquivo de hosts:
-
-```bash
-$ sudo bash scripts/set-hosts.sh
-```
-
-Isso permitirá que o domínio `testing.local` funcione corretamente no seu navegador.
-
-**No Windows**, rode o script dentro do **WSL** ou edite manualmente `C:\Windows\System32\drivers\etc\hosts`.
-
----
-
-## 🏗️ 4. Subindo o Ambiente com Lando
-
-Agora é só rodar o Lando!
-
-```bash
-$ lando start
-```
-
-Isso irá:
-✅ Criar os containers necessários  
-✅ Configurar o banco de dados  
-✅ Baixar e instalar o WordPress  
-✅ Configurar o PHP, Nginx/Apache e Redis  
-
-**Para ver as URLs disponíveis, execute:**
-```bash
-$ lando info
-```
-
-Você verá algo como:
-```
-URLS
-  ✔ APPSERVER NGINX URLS
-    ✔ http://testing.lndo.site/ [200]
-    ✔ https://testing.lndo.site/ [200]
-```
-
-Agora você já pode acessar seu site no navegador! 🚀
-
----
-
-## 🛠️ 5. Ferramentas Integradas
-
-Nosso ambiente já vem com algumas ferramentas configuradas no **Lando** para facilitar o desenvolvimento:
-
-```bash
-# Executar comandos do Composer dentro do container
-$ lando composer install
-
-# Rodar o Yarn dentro do container
-$ lando yarn install
-
-# Usar o WP-CLI dentro do container
-$ lando wp help
-
-# Acessar o banco de dados via MySQL CLI
-$ lando mysql
-
-# Limpar o cache do Redis
-$ lando redis-cli FLUSHALL
+```plaintext
+.
+├── config/              # Arquivos de configuração (php.ini, .env, etc.)
+├── db_init/             # Arquivos de inicialização do banco de dados
+├── scripts/             # Scripts auxiliares (setup, configuração de hosts, etc.)
+├── templates/           # Modelos de arquivos do projeto
+├── wp/                  # Core do WordPress (ignorado no Git)
+├── wp-content/          # Plugins, temas e uploads
+│   ├── mu-plugins/      # Must-use plugins (plugins customizados)
+│   ├── plugins/         # Plugins convencionais
+│   ├── themes/          # Temas ativos
+│   └── uploads/         # Uploads (não versionado)
+├── vendor/              # Dependências gerenciadas pelo Composer (não versionado)
+├── .lando.yml           # Configuração do Lando
+├── docker-compose.yml   # Configuração do Docker Compose
+├── Makefile             # Automação de tarefas
+├── composer.json        # Gerenciamento de dependências do WordPress
+└── README.md            # Este arquivo
 ```
 
 ---
 
-## 🐞 6. Debugging com Xdebug no VS Code
+## 🛠️ Configuração e Desenvolvimento
 
-Já configuramos o **Xdebug** para funcionar no VS Code! Para ativá-lo:
+### 🔧 1. Configurando o Ambiente
 
-1. **Abra o VS Code e carregue o workspace**:
-   ```bash
-   code testing.code-workspace
+1. **Clone o repositório**
+   ```sh
+   git clone git@github.com:lgobatto/leolando.git gui_design
+   cd gui_design
    ```
-2. Vá para **Run and Debug** (Ctrl+Shift+D) e escolha "Listen for Xdebug".
-3. Inicie o debugger e comece a depuração! 🎯
 
-Caso precise ativar o Xdebug manualmente, use:
-```bash
-$ lando xdebug-on
+2. **Configure os hosts locais** (necessário para acessar pelo navegador)
+   ```sh
+   ./scripts/set-hosts.sh
+   ```
+
+3. **Suba o ambiente com Lando**
+   ```sh
+   lando start
+   ```
+
+4. **Acesse o ambiente local no navegador**
+   - 📌 http://gui_design.lndo.site
+   - 🔒 https://gui_design.lndo.site
+
+---
+
+### 📦 2. Gerenciamento de Pacotes com Composer
+
+Utilizamos **Composer** para gerenciar os plugins e temas do WordPress, garantindo um ambiente consistente.
+Todos os comandos devem ser executados **dentro do ambiente Lando**.
+
+#### 🔍 Instalar dependências do projeto:
+```sh
+lando composer install
 ```
-E para desativar:
-```bash
-$ lando xdebug-off
+
+#### 📌 Adicionar um plugin via Composer:
+```sh
+lando composer require wpackagist-plugin/advanced-custom-fields
 ```
+
+#### 🔄 Atualizar dependências:
+```sh
+lando composer update
+```
+
+---
+
+### 🏗️ 3. Construção do Tema
+
+Se o projeto possuir um tema personalizado, é necessário instalar as dependências e rodar o build:
+
+1. **Instalar dependências do tema:**
+   ```sh
+   lando yarn install (necessário informar o path do tema)
+   ```
+
+2. **Compilar os assets do tema:**
+   ```sh
+   lando yarn build (necessário informar o path do tema)
+   ```
+
+---
+
+## 🐞 Debugging com Xdebug
+
+O **Xdebug** já está configurado para permitir depuração via **VS Code**. Basta abrir o **workspace** no VS Code e ativar o **debugger**.
+
+📜 Configurações adicionais podem ser encontradas no arquivo [`environment.md`](./docs/environment.md).
+
+---
+
+## 📜 Boas Práticas
+
+Aqui estão algumas práticas recomendadas para manter um código limpo e sustentável:
+
+✔ **Versionamento correto:** Apenas código relevante é versionado.
+✔ **Ambiente isolado:** Evitamos dependências do sistema operacional local.
+✔ **Plugins via Composer:** Sem instalação manual de plugins.
+✔ **Automação:** Tarefas manuais são reduzidas ao mínimo.
+
+Para mais detalhes, confira [`good-practices.md`](./docs/good-practices.md).
 
 ---
 
 ## 🎯 Conclusão
 
-Agora você tem um ambiente de desenvolvimento **totalmente funcional** para WordPress, rodando com **Lando, Composer, WP-CLI, Redis, Xdebug** e mais! 🚀
+Com esse setup, conseguimos um **ambiente moderno, rápido e seguro** para desenvolver aplicações WordPress de forma profissional. 🚀
 
-Se tiver dúvidas ou sugestões, fique à vontade para contribuir ou abrir uma issue no repositório.
+Caso encontre problemas, verifique a documentação ou entre em contato com a equipe.
 
-🛠️ **Happy coding!** 🛠️
+Happy coding! 🎉
 
+Me avise se quiser ajudar ou sugerir algo! 🚀🔥

@@ -1,15 +1,15 @@
-name: {{PROJECT_NAME}}
+name: gui_design
 recipe: wordpress
 config:
   webroot: ./
-  via: {{SERVER_TYPE}}
-  php: {{PHP_VERSION}}
+  via: nginx
+  php: 8.3
   xdebug: true
   config:
     php: config/php.ini
 services:
   node:
-    type: node:{{NODE_VERSION}}
+    type: node:20
     ssl: true
     sslExpose: false
     portforward: 3009

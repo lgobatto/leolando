@@ -5,7 +5,7 @@ import laravel from 'laravel-vite-plugin';
 import { wordpressPlugin, wordpressThemeJson } from '@roots/vite-plugin';
 
 export default defineConfig({
-  base: '/app/wp-content/themes/{{PROJECT_NAME}}/',
+  base: '/app/wp-content/themes/gui_design/',
   plugins: [
     tailwindcss(),
     laravel({

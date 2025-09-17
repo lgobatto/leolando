@@ -1,16 +1,16 @@
 {
-  "name": "{{PROJECT_NAMESPACE}}/{{PROJECT_NAME}}",
+  "name": "lgobatto/gui_design",
   "description": "Projeto WordPress customizado",
   "type": "project",
   "license": "MIT",
   "authors": [
     {
-      "name": "{{AUTHOR}}",
-      "email": "{{AUTHOR_EMAIL}}"
+      "name": "Leonardo Gobatto",
+      "email": "leo@codigodoleo.com.br"
     }
   ],
   "require": {
-    "php": ">={{PHP_VERSION}}",
+    "php": ">=8.3",
     "vlucas/phpdotenv": "^5.5"
   },
   "require-dev": {

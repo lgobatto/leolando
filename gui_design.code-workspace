@@ -5,11 +5,11 @@
       "name": "Root"
     },
     {
-      "path": "./wp-content/themes/{{PROJECT_NAME}}",
+      "path": "./wp-content/themes/gui_design",
       "name": "Theme"
     },
     {
-      "path": "./wp-content/plugins/{{PROJECT_NAME}}",
+      "path": "./wp-content/plugins/gui_design",
       "name": "Plugin"
     }
   ],

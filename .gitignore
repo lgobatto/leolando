@@ -1,32 +1,35 @@
 # 🔹 WordPress Core (não versionamos o core, ele será gerenciado pelo ambiente)
-wp-*.php
-index.php
-license.txt
-readme.html
-xmlrpc.php
-wp-admin/
-wp-includes/
-wp-content/
+/wp-*.php
+/index.php
+/license.txt
+/readme.html
+/xmlrpc.php
+wp-admin
+wp-includes
 
 # 🔹 Arquivos de configuração sensíveis
-wp-config*.php
-!wp-config.php
+/wp-config*.php
+!/wp-config.php
 
 # 🔹 Diretórios de uploads e cache
-wp-content/uploads/
-wp-content/upgrade/
-wp-content/cache/
+/wp-content/uploads
+/wp-content/upgrade
+/wp-content/cache
 
 # 🔹 Plugins e temas que não estamos desenvolvendo
-wp-content/plugins
-wp-content/themes
+wp-content/plugins/**/*
+wp-content/themes/**/*
+!wp-content/plugins/gui_design
+!wp-content/plugins/gui_design/**/*
+!wp-content/themes/gui_design
+!wp-content/themes/gui_design/**/*
 
 # 🔹 Must-Use Plugins (mantemos apenas os customizados)
-wp-content/mu-plugins
+wp-content/mu-plugins/**/*
 !wp-content/mu-plugins/.gitkeep
 
 # 🔹 Diretorio de linguagens e traduções
-wp-content/languages
+wp-content/languages/**/*
 !wp-content/languages/.gitkeep
 
 # 🔹 Arquivos do Composer e NPM/Yarn

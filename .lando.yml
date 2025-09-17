@@ -1,3 +1,5 @@
+
+# Sage configuration start
 services:
   appserver:
     run:
@@ -6,8 +8,9 @@ services:
 tooling:
   sage-build:
     description: "Build the Sage theme"
-    dir: /app/wp-content/themes/{{PROJECT_NAME}}
+    dir: /app/wp-content/themes/gui_design
     cmd:
       - appserver: composer install
       - node: yarn install
       - node: yarn build
+# Sage configuration end
